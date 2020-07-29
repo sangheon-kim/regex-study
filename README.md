@@ -113,3 +113,16 @@ let array = birth.map((item) => factory(item));
 
 console.log(array); // ["1995-09-06", "1995-12-21", "1234-09-06"]
 ```
+
+
+### 공백제거
+#### created By 2020.07.29
+```javascript
+var fileNames = ['1. abc', '2.       abc', '3.abc' ];
+
+var regex7 = /([0-9].)\s+([a-z,A-Z]{3})/;
+
+let array = fileNames.map(item => item.replace(regex7, '$1$2'))
+
+console.log(array) // ["1.abc", "2.abc", "3.abc"]
+```
