@@ -1,0 +1,11 @@
+{
+  "name": "test_regex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sangheon-kim/regex-study.git",
+  "author": "FrontGuy <ksh8367@sk.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.9.7"
+  }
+}

@@ -126,3 +126,49 @@ let array = fileNames.map(item => item.replace(regex7, '$1$2'))
 
 console.log(array) // ["1.abc", "2.abc", "3.abc"]
 ```
+
+### @2x 이미지 전부 -2x로 파일명 치환
+#### created By 2020.08.03
+##### svn에 @는 안올라가서 직접 만듬
+```javascript
+const fs = require("fs");
+// glob 모듈의 경우 외부 모듈이니 설치해주세요 
+const glob = require("glob");
+// 이미지 파일 경로를 지정해줍니다.  
+const imgPath = 'src/assets/img/src/'
+ 
+// 정규표현식에 앞부분 경로를 설정해줍니다.  
+ const reg = /((src\/assets\/img\/src\/)(((.+)@2x)(.png)))/
+  
+ glob(`${imgPath}/*@2x.png`, function (err, files) {
+  files.map(item => {
+   fs.rename(item, item.replace(reg, '$2$5-2x$6'), (err) => {
+   if (err) throw err;
+   console.log('Complete By Code that made by Sangheon')
+  })
+ })
+});
+```
+
+### 파일명 공백 제거 및 한자리앞에 0 붙이기Layer 1.png -> Layer01.png
+#### created By 2020.08.03
+##### gif sprite 이미지 처리 후 애니메이션 해야하는데 generator에서 이름 오름차순하는데 1 다음 2가 읽혀야하는데 10이 읽혀져서 그거 막으려고 만듬.
+```javascript
+const fs = require("fs");
+// glob 모듈의 경우 외부 모듈이니 설치해주세요 
+const glob = require("glob");
+// 이미지 파일 경로를 지정해줍니다.  
+const imgPath = 'image/*'
+// png아닌거 바꾸고싶으면 확장자 변경해주세요
+const reg = /^(.+)\s+(.?\d)+(\.png)$/
+
+glob(`${imgPath}/*.png`, function(err, files) {
+  files.map(item => {
+    fs.rename(item, item.match(reg)[2].length === 1 ? item.replace(reg, '$10$2$3') : item.replace(reg, '$1$2$3'), (err) => {
+      if (err) throw err;
+
+      console.log('Complete By Code that made by Sangheon')
+    })
+  })
+})
+```
